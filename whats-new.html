@@ -1,0 +1,64 @@
+<!-- COT System Version: V202611061559 -->
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>היסטוריית עדכונים - COT</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap">
+<style>
+  body { font-family:'Heebo',sans-serif; background:#F2F5F9; color:#253246; margin:0; padding:30px 16px 60px; }
+  .wrap { max-width:640px; margin:0 auto; }
+  header { text-align:center; margin-bottom:24px; }
+  header h1 { color:#16233B; font-size:21px; margin:0 0 4px; }
+  header p { color:#64748B; font-size:13px; margin:0; }
+  header a { color:#1D4E89; font-size:13px; font-weight:700; text-decoration:none; }
+  header a:hover { text-decoration:underline; }
+  .card { background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(20,33,58,.06); padding:16px 18px; margin-bottom:14px; border-right:4px solid #DCE3EC; }
+  .card.pinned { border-right-color:#B06F1F; }
+  .date { font-size:11.5px; font-weight:700; color:#94A3B8; display:block; margin-bottom:4px; }
+  .title { font-size:15px; font-weight:800; color:#16233B; margin-bottom:5px; }
+  .text { font-size:13.5px; line-height:1.6; color:#475569; margin:0; }
+  .empty, .error { text-align:center; color:#94A3B8; font-size:14px; padding:40px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>היסטוריית עדכוני מערכת</h1>
+    <p>כל ההודעות שפורסמו אי פעם ב-COT, כולל כאלה שכבר ירדו מהרשימה השוטפת.</p>
+    <p style="margin-top:10px;"><a href="index.html">חזרה למערכת</a></p>
+  </header>
+  <div id="list"><p class="empty">טוען...</p></div>
+</div>
+<script>
+fetch('content/system-updates.he.html?t=' + Date.now())
+  .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+  .then(function(text) {
+    var tmp = document.createElement('div'); tmp.innerHTML = text;
+    var items = Array.from(tmp.querySelectorAll('article'));
+    items.sort(function(a, b) { return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || ''); });
+    var list = document.getElementById('list');
+    if (items.length === 0) { list.innerHTML = '<p class="empty">אין עדיין היסטוריה.</p>'; return; }
+    list.innerHTML = '';
+    items.forEach(function(a) {
+      var pinned = a.getAttribute('data-pinned') === 'true';
+      var dateStr = a.getAttribute('data-date') || '';
+      var dateDisplay = dateStr ? new Date(dateStr + 'T00:00:00').toLocaleDateString('he-IL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+      var titleEl = a.querySelector('.update-title');
+      var textEl = a.querySelector('.update-text');
+      var card = document.createElement('div');
+      card.className = 'card' + (pinned ? ' pinned' : '');
+      card.innerHTML = '<span class="date">' + dateDisplay + '</span>' +
+        '<div class="title">' + (titleEl ? titleEl.textContent : '') + '</div>' +
+        '<p class="text">' + (textEl ? textEl.innerHTML : '') + '</p>';
+      list.appendChild(card);
+    });
+  })
+  .catch(function(err) {
+    console.error('טעינת היסטוריית העדכונים נכשלה:', err);
+    document.getElementById('list').innerHTML = '<p class="error">שגיאה בטעינת ההיסטוריה. ודא שהאפליקציה רצה משרת (לא מקובץ מקומי).</p>';
+  });
+</script>
+</body>
+</html>

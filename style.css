@@ -1,0 +1,419 @@
+/* COT System Version: V202611061559 */
+/* === קובץ עיצוב: style.css === */
+/* עיצוב חדש (ניווי + ענבר), מבוסס על ההצעה שאושרה ב-Design canvas. כל שמות המחלקות/המזהים
+   שה-JS תלוי בהם (ראו 01-shift-codes.js / calculator.js / components.js וכו') נשארו בדיוק כפי
+   שהיו - רק המראה (צבעים, גופן, רווחים, פינות, גבולות) השתנה. שום עמודת חישוב לא שונתה. */
+
+:root {
+    --navy-900: #16233B;
+    --navy-700: #1D2E4A;
+    --c-primary: #1D4E89;
+    --c-primary-dark: #163C6C;
+    --c-primary-rgb: 29, 78, 137;
+    --amber: #B06F1F;
+    --amber-tint: #F3E8DA;
+    --ink: #253246;
+    --muted: #64748B;
+    --line: #DCE3EC;
+    --ground: #F2F5F9;
+    --surface: #FFFFFF;
+    --danger: #B3261E;
+    --success: #15803D;
+    --radius: 14px;
+    --shadow: 0 2px 10px rgba(20, 33, 58, 0.06);
+}
+
+* { box-sizing: border-box; }
+body { font-family: 'Heebo', 'Segoe UI', Tahoma, Arial, sans-serif; background-color: var(--ground); margin: 0; padding: 20px; color: var(--ink); }
+h2, h4, .version-stamp { touch-action: manipulation; user-select: none; }
+button, input, select { font-family: inherit; }
+a { color: var(--c-primary); }
+a:hover { color: var(--c-primary-dark); }
+input:focus-visible, button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 2px; }
+
+#debugBox { background-color: var(--navy-900); padding: 12px 25px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(22,35,59,0.25); }
+
+.app-version-badge { color: rgba(255,255,255,0.75); font-size: 10px; font-weight: bold; background: none; padding: 0; font-family: monospace; letter-spacing: 0.4px; pointer-events: none; white-space: nowrap; }
+.login-version-badge { color: #ffffff; font-size: 12px; font-weight: 700; background: rgba(255,255,255,0.14); padding: 4px 10px; border-radius: 20px; letter-spacing: 0.4px; margin-top: 8px; pointer-events: none; z-index: 10;}
+
+.btn-3d { position: relative; top: 0; transition: 0.15s ease; border: none; font-weight: 700; cursor: pointer; text-align: center; border-radius: 10px; }
+.btn-3d:active { transform: translateY(1px); }
+
+.btn-info { background-color: var(--amber); color: #fff; border: none; display: flex; align-items: center; gap: 7px; padding: 9px 16px; font-size: 13.5px; font-weight: 700; box-shadow: 0 2px 8px rgba(176,111,31,0.4); }
+.btn-info .icon { font-size: 15px; display: flex; }
+.btn-info:hover { background-color: #96590F; }
+
+.btn-logout { background-color: #fff; color: var(--navy-900); border: none; padding: 9px 16px; font-size: 13.5px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+.btn-logout:hover { background-color: #EAF0FA; }
+
+.btn-load, .btn-save { background-color: #fff; color: #334155; border: 1.5px solid var(--line); box-shadow: 0 2px 6px rgba(var(--c-primary-rgb), 0.08); }
+.btn-load:hover, .btn-save:hover { background-color: #F7F9FC; }
+.btn-primary { background-color: var(--c-primary); color: white; box-shadow: 0 3px 10px rgba(var(--c-primary-rgb), 0.35); }
+.btn-primary:hover { background-color: var(--c-primary-dark); }
+.btn-reset { background-color: #fff; color: var(--danger); border: 1.5px solid #F2D4D4; box-shadow: 0 2px 6px rgba(179, 38, 30, 0.08); }
+.btn-reset:hover { background-color: #FDF2F2; }
+
+.btn-print { background-color: #fff; color: #334155; border: 1.5px solid var(--line); padding: 15px 30px; font-size: 16px; font-weight: 700; border-radius: 10px; box-shadow: 0 2px 6px rgba(var(--c-primary-rgb), 0.08); }
+.btn-close-month { background-color: var(--amber); color: white; padding: 15px 30px; font-size: 16px; font-weight: 800; border-radius: 10px; margin-right: 15px; box-shadow: 0 3px 10px rgba(176, 111, 31, 0.35); }
+.btn-close-month:hover { background-color: #96590F; }
+
+.header-panel { background: var(--surface); padding: 14px 18px; border-radius: var(--radius); box-shadow: 0 4px 16px rgba(20,33,58,0.1); border: 1px solid var(--line); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+.inputs-section { display: flex; flex-wrap: wrap; gap: 10px; flex: 1 1 420px; }
+.input-group { background: var(--ground); border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 8px; display: flex; flex-direction: column; align-items: center; flex: 1 1 110px; }
+.input-group label { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; width: 100%; text-align: center; }
+.input-group input, .input-group select { padding: 4px 2px; border: none; background: transparent; font-size: 14px; font-weight: 700; color: var(--navy-900); text-align: center; width: 100%; outline: none;}
+
+.actions-section { flex: 0 0 auto; display: flex; justify-content: flex-end; }
+.action-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.action-grid button { padding: 12px 18px; font-size: 16px; font-weight: 700; white-space: nowrap; box-shadow: 0 2px 6px rgba(var(--c-primary-rgb), 0.12); }
+
+.table-container { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow-x: auto; max-height: 65vh; margin-bottom: 20px; padding: 4px; }
+table { width: max-content; margin: 0 auto; border-collapse: collapse; white-space: nowrap; table-layout: auto; }
+thead { position: sticky; top: 0; z-index: 10; }
+
+/* עמודות התאריך נדבקות בגלילה אופקית (RTL: תחילת הטבלה בצד ימין) */
+#timesheet thead tr:first-child th:first-child { position: sticky; right: 0; z-index: 12; }
+#timesheet tbody td:nth-child(1) { position: sticky; right: 0; z-index: 5; }
+#timesheet tbody td:nth-child(2) { position: sticky; right: 30px; z-index: 5; }
+/* שורות הסיכום (tfoot) לא נדבקות: תא התווית שלהן רחב (colspan=9), ואם היה נדבק הוא היה מכסה
+   ערכים אמיתיים בטבלה בזמן גלילה. במקום זאת הן גוללות רגיל, ועוברות מתחת לעמודת התאריך הנעולה. */
+
+th, td { border: 1px solid var(--line); padding: 2px 2px; text-align: center; font-size: 13px; vertical-align: middle; }
+th { background-color: var(--c-primary); color: white; font-size: 12px; padding: 4px 2px; border-color: rgba(255,255,255,0.18); }
+/* קו דק בין כל עמודה (ברירת מחדל, מעל); קו מודגש רק בגבולות הקבוצות הראשיות - תקן/רגילות, סוף כל קבוצת אחוזים, וערך */
+.thick-border-left { border-left: 3px solid #90A6C4 !important; }
+th.thick-border-left { border-left: 3px solid rgba(255,255,255,0.55) !important; }
+
+.time-input { width: 65px; padding: 2px; border: 1px solid #C7D4E5; border-radius: 4px; text-align: center; font-weight: 700; font-family: monospace; font-size: 14px; color: var(--navy-900); background: rgba(255,255,255,0.7); }
+.time-input::placeholder { color: #C7D4E5; font-weight: normal; }
+.shift-type-input { width: 35px; padding: 2px; border: 1px solid #C7D4E5; border-radius: 4px; text-align: center; font-weight: 700; font-size: 14px; background-color: var(--ground); color: var(--navy-900); margin: 0 auto; display: block; }
+.val-cell, .calc-th { width: 38px !important; min-width: 38px !important; max-width: 45px !important; text-align: center !important; }
+.val-cell { color: var(--navy-900); font-weight: 700; background-color: rgba(248, 251, 255, 0.5); }
+.day-sat { color: var(--c-primary); font-weight: 700; background-color: rgba(227, 242, 253, 0.7) !important; }
+.day-fri { color: var(--c-primary-dark); font-weight: 700; background-color: rgba(225, 245, 254, 0.7) !important; }
+.row-sat td { border-bottom: 2px solid var(--c-primary) !important; }
+
+.color-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin: 12px 0 16px; font-size: 13px; font-weight: 600; color: var(--muted); }
+
+.view-toggle-row { display: flex; justify-content: center; margin-bottom: 10px; }
+.view-toggle-btn { display: inline-flex; align-items: center; gap: 7px; background: #fff; color: var(--c-primary); border: 1.5px solid var(--c-primary); border-radius: 20px; padding: 7px 16px; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.15s; }
+.view-toggle-btn[aria-pressed="true"] { background: var(--c-primary); color: #fff; }
+.view-toggle-btn:hover { box-shadow: 0 2px 8px rgba(var(--c-primary-rgb), 0.25); }
+
+/* תצוגה פשוטה: מסתירה את 14 עמודות האחוזים (כותרת+גוף+סיכום), אבל רק על המסך - בהדפסה תמיד מוצג הכל */
+.table-container.simple-view .pct-col,
+.table-container.simple-view [id^="val-J-"], .table-container.simple-view [id^="val-K-"],
+.table-container.simple-view [id^="val-L-"], .table-container.simple-view [id^="val-M-"],
+.table-container.simple-view [id^="val-N-"], .table-container.simple-view [id^="val-O-"],
+.table-container.simple-view [id^="val-P-"], .table-container.simple-view [id^="val-Q-"],
+.table-container.simple-view [id^="val-R-"], .table-container.simple-view [id^="val-S-"],
+.table-container.simple-view [id^="val-T-"], .table-container.simple-view [id^="val-U-"],
+.table-container.simple-view [id^="val-V-"], .table-container.simple-view [id^="val-W-"] {
+    display: none !important;
+}
+.legend-item { display: flex; align-items: center; gap: 7px; }
+.legend-swatch { width: 15px; height: 15px; border-radius: 4px; display: inline-block; border: 1px solid rgba(0,0,0,0.1); }
+.legend-absence { background-color: #7C3AED; }
+.legend-negative { background-color: var(--danger); }
+.legend-holiday { background-color: var(--amber); }
+.legend-weekend { background-color: var(--c-primary); }
+
+.tfoot-summary { background-color: #EAF0FA; font-weight: 700; position: static; box-shadow: none; }
+.tfoot-summary td { border: 1.5px solid #C7D4E5; color: var(--navy-900); }
+.tfoot-summary.hours-row td { border-top: 3px solid var(--c-primary) !important; }
+.tfoot-title { text-align: left !important; padding-left: 8px !important; }
+
+.dashboard { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+/* פס סיכומי הטבלה העליון - רצועה אחת, באותו סגנון של פס היתרות (לא קוביות נפרדות) */
+.kpi-row { width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 22px;
+    background: #DCE7F7; border: 1.5px solid #B9CDE8; border-radius: 12px; padding: 13px 22px;
+    box-shadow: 0 3px 10px rgba(29,78,137,0.12); }
+.kpi-item { display: inline-flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; color: #163C6C; white-space: nowrap; }
+.kpi-item strong { font-size: 16.5px; font-weight: 800; }
+.kpi-item-highlight strong { font-size: 18px; }
+
+/* נוכחות/היעדרות - צבע נבדל לכל אחד, כדי שהעין תבחין ביניהם מיד */
+.kpi-item-presence strong { color: #1D4E89; }
+.kpi-item-absence strong { color: #7C3AED; }
+
+/* כפתור "משמרות נגררות" - עיצוב של כפתור אמיתי (לא כיתוב קטן תחת פריט אחר), כדי שיהיה ברור
+   וקריא שזה נתון חשוב (לתכנון השבוע הראשון של החודש הבא) וגם שאפשר/צריך ללחוץ עליו לתיקון. */
+.kpi-chip-btn {
+    font: inherit; border: 1.5px solid #B9CDE8; background: #fff; border-radius: 10px;
+    padding: 7px 14px; cursor: pointer; color: #163C6C; transition: 0.15s;
+}
+.kpi-chip-btn:hover, .kpi-chip-btn:focus-visible { background: #EAF0FA; border-color: var(--c-primary); }
+.kpi-chip-btn strong { color: var(--amber); }
+
+.balance-input-wrap { display: inline-flex; align-items: center; gap: 4px; }
+.bal-input { width: 68px; text-align: center; font-weight: 700; font-size: 14.5px; padding: 4px; border-radius: 6px; border: 1.5px solid var(--line); outline: none; transition: 0.2s; color: var(--navy-900);}
+.locked-input { background-color: #F7F9FC; color: var(--muted); border-color: var(--line); }
+.lock-btn { cursor: pointer; font-size: 14px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 7px; width: 28px; height: 28px; padding: 0; transition: 0.2s; }
+.lock-btn:hover { background: #F0F4F9; }
+
+/* טבלת יתרות מסך (לא ההדפסה - זו נשארת כמו שהיא ב-.balances-table) */
+.balances-table-card { width: 100%; max-width: 820px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.balances-screen-table { width: 100%; border-collapse: collapse; }
+.balances-screen-table th, .balances-screen-table td { padding: 6px 14px; text-align: center; font-size: 14.5px; }
+.balances-screen-table thead tr { background: var(--c-primary); color: #fff; }
+.balances-screen-table tbody tr:nth-child(even) { background: #F7F9FC; }
+.balances-screen-table tbody tr:not(:last-child) { border-bottom: 1px solid #EEF2F7; }
+.balances-screen-table td:first-child { font-weight: 700; color: var(--navy-900); text-align: start; padding-right: 20px; }
+
+.balances-table-wrapper { width: 100%; max-width: 650px; margin: 30px auto; background: var(--surface); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); }
+.balances-table { width: 100%; border-collapse: collapse; text-align: center; margin-top: 15px; }
+.balances-table th { background-color: var(--c-primary); color: white; padding: 10px; font-size: 14px; border: 1px solid var(--navy-700); }
+.balances-table td { border: 1px solid var(--line); padding: 10px; font-size: 15px; color: var(--ink); }
+.balances-table tr:nth-child(even) { background-color: #F7F9FC; }
+.balances-table tr:hover { background-color: #EAF0FA; }
+
+#weeklyWarning { display:none; background-color:#FDF2F2; color:var(--danger); padding:12px 20px; border-radius:12px; text-align:center; font-weight:700; font-size:14px; margin-bottom:20px; border:1.5px solid #F3C6C6; }
+
+.modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(16,24,40,0.55); backdrop-filter: blur(2px); }
+.modal-content { background-color: #fff; margin: 3vh auto; padding: 25px; border-radius: 16px; width: 90%; max-width: 750px; box-shadow: 0 20px 50px rgba(20,33,58,0.3); position: relative; animation: modalopen 0.3s;}
+@keyframes modalopen { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
+.close-btn { color: #94A3B8; float: left; font-size: 26px; font-weight: bold; cursor: pointer; margin-top: -8px; margin-left: -4px; }
+.close-btn:hover { color: var(--danger); }
+.dialog-icon { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+.modal-header { border-bottom: 2px solid var(--line); padding-bottom: 10px; margin-bottom: 15px; }
+.modal-header h2 { margin: 0; color: var(--navy-900); font-size: 21px; }
+.info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+.info-table th { background-color: var(--c-primary); color: white; padding: 8px; font-size: 14px; text-align: right;}
+.info-table td { padding: 6px 8px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink); text-align: right;}
+.code-badge { background-color: var(--ground); color: var(--c-primary); padding: 2px 6px; border-radius: 6px; font-weight: 700; font-family: monospace; border: 1px solid var(--line); display: inline-block; min-width: 30px; text-align: center;}
+
+.version-stamp { position: fixed; bottom: 5px; left: 5px; font-size: 10px; font-weight: bold; color: var(--muted); z-index: 99999; cursor: pointer;}
+.print-only, .print-only-cell { display: none; }
+
+/* ========================================================= */
+/* מסכי התחברות (3 עמודות -> פאנל מותג + טופס) ומערכת האבטחה  */
+/* ========================================================= */
+
+.full-screen-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--ground);
+    z-index: 10000;
+    display: block;
+    overflow-y: auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* מסך תחזוקה: ממורכז אמיתית על המסך (full-screen-overlay הכללי לא עושה את זה - משותף עם מסך הכניסה,
+   שמתמרכז בעצמו דרך auth-container-wrapper). */
+/* רק יישור - לא display. ה-display (flex/none) נשאר בשליטת ה-JS בלבד (style.display inline),
+   בדיוק כמו שהיה לפני; קודם הייתה כאן !important על display:flex שדרס את ה-'none' של ה-JS
+   וגרם למסך התחזוקה להיות גלוי תמיד, גם כש-maintenanceMode היה false. */
+.maintenance-overlay { align-items: center; justify-content: center; }
+.maintenance-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--amber-tint); color: var(--amber); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+.maintenance-icon svg { animation: maintenance-spin 3.5s linear infinite; }
+@keyframes maintenance-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .maintenance-icon svg { animation: none; } }
+
+.auth-container-wrapper {
+    margin: auto;
+    width: 100%; max-width: 1080px;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px; box-sizing: border-box;
+}
+
+.system-header { text-align: center; color: white; margin-bottom: 28px; display: flex; flex-direction: column; align-items: center; width: 100%; position: relative;}
+.main-logo-img { width: 72px; height: 72px; object-fit: cover; margin-bottom: 10px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+.main-logo-img:hover { transform: translateY(-3px); }
+.system-header p { margin: 0; font-size: 15px; font-weight: 500; opacity: 0.85; }
+
+.wide-box-3d {
+    background: #ffffff; width: 100%; border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+    display: flex; flex-direction: row; overflow: hidden; position: relative;
+    margin: 0 auto;
+}
+
+@media (max-width: 1100px) {
+    .wide-box-3d { flex-direction: column; max-width: 550px; }
+    .brand-panel { order: 1; }
+    .auth-section { order: 2; }
+}
+
+/* פאנל המותג (ניווי כהה): עמודה אחת מאוחדת - marketing-brief (כותרת+תגיות) למעלה,
+   updates-section (הודעות המערכת) מתחתיו, שניהם ילדים ישירים של brand-panel אחד. */
+.brand-panel { flex: 1; min-width: 300px; background: var(--navy-900); color: #fff; display: flex; flex-direction: column; }
+.marketing-brief { padding: 20px 32px 16px; flex: 0 0 auto; }
+
+.brand-logo-row { display: flex; align-items: center; gap: 12px; padding: 32px 32px 0; }
+.brand-logo-img { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.brand-logo-title { font-size: 19px; font-weight: 800; line-height: 1.2; color: #fff; }
+.brand-logo-subtitle { font-size: 11.5px; font-weight: 500; opacity: 0.75; letter-spacing: 0.2px; }
+.brand-logo-row .login-version-badge { margin-top: 4px; font-size: 10px; padding: 2px 8px; display: inline-block; }
+.updates-section { padding: 0 32px 32px; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+.brief-title { color: #fff; font-size: 23px; margin: 0 0 10px 0; font-weight: 800; line-height: 1.3; text-align: start; }
+.marketing-brief > p { font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0 0 14px 0; }
+.benefits-box { background: transparent; padding: 0; margin: 0 0 6px 0; }
+.benefits-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.benefits-list li { font-size: 11.5px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 5px 12px; }
+.benefits-list li strong { font-weight: 600; }
+.btn-guide { color: #fff; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 10px; margin-top: 10px; transition: 0.2s; }
+.btn-guide:hover { background: rgba(255,255,255,0.2); }
+
+.section-title { color: rgba(255,255,255,0.75); font-size: 12px; margin: 0 0 12px 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; display: flex; align-items: center; gap: 8px;}
+.updates-container { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; max-height: 280px; padding-left: 2px; }
+.updates-container::-webkit-scrollbar { width: 5px; }
+.updates-container::-webkit-scrollbar-track { background: transparent; }
+.updates-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+
+.update-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px 14px; position: relative; }
+.update-card.alert-highlight { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.3); }
+.alert-badge { font-size: 10px; font-weight: 800; color: #FBBF24; letter-spacing: 0.3px; }
+.alert-highlight .update-date { color: rgba(255,255,255,0.6); }
+.alert-highlight .update-title { color: #fff; }
+
+.update-card.today-highlight { background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.3); }
+.today-badge { font-size: 10px; font-weight: 800; color: #93C5FD; }
+.today-highlight .update-date { color: rgba(255,255,255,0.6); }
+.update-date { font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.55); display: block; margin-bottom: 4px; }
+.update-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.update-text { font-size: 11.5px; color: rgba(255,255,255,0.75); line-height: 1.5; margin: 0;}
+
+.auth-section { flex: 1; background: #ffffff; padding: 44px 40px; display: flex; flex-direction: column; position: relative; min-width: 320px;}
+.tabs { display: flex; background: var(--ground); border-radius: 12px; padding: 5px; margin-bottom: 22px; }
+.tab { flex: 1; padding: 11px 0; text-align: center; font-weight: 700; color: var(--muted); cursor: pointer; transition: 0.2s; border-radius: 9px; font-size: 14px;}
+.tab.active { background: #ffffff; color: var(--navy-900); box-shadow: 0 2px 8px rgba(20,33,58,0.1); }
+.tab-content-wrapper { min-height: 410px; display: flex; flex-direction: column; }
+.tab-content { display: none; flex-grow: 1; animation: fadeIn 0.3s ease; flex-direction: column; }
+.tab-content.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+.security-notice { background: #F0FDF4; padding: 10px 12px; border-radius: 10px; margin-bottom: 12px; font-size: 12px; color: #166534; line-height: 1.4; border: 1px solid #BBF7D0; }
+.security-notice h4 { margin: 0 0 4px 0; color: #15803D; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+.shield-icon { width: 14px; height: 14px; fill: #15803D; }
+
+.auth-input-group { margin-bottom: 14px; position: relative;}
+.auth-input-group label { font-size: 12.5px; font-weight: 700; color: #475569; margin-bottom: 6px; display: block; }
+.auth-input-group input { width: 100%; padding: 12px 14px; border-radius: 10px; box-sizing: border-box; font-size: 14px; background: #FAFBFD; border: 1.5px solid var(--line); outline: none; transition: 0.2s; color: var(--navy-900);}
+.auth-input-group input:focus { border-color: var(--c-primary); background: #ffffff; box-shadow: 0 4px 12px rgba(var(--c-primary-rgb), 0.12); }
+.auth-input-group input::placeholder { color: #94A3B8; }
+
+.pwd-input-wrap { position: relative; width: 100%; display: block; }
+.pwd-input-wrap input { padding-left: 40px !important; }
+.pwd-toggle-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 16px; opacity: 0.6; user-select: none; z-index: 2; }
+
+.forgot-pwd-link { font-size: 12px; color: var(--c-primary); font-weight: 600; display: inline-block; margin-top: 4px; cursor: pointer; transition: 0.2s; }
+.forgot-pwd-link:hover { color: var(--c-primary-dark); text-decoration: underline; }
+
+.login-trust-msg { font-size: 12px; font-weight: 600; color: var(--muted); text-align: center; margin-top: 18px; margin-bottom: auto; line-height: 1.5; }
+
+.req-list { list-style: none; padding: 0; margin: 2px 0 16px 0; font-size: 11.5px; font-weight: 600; display: grid; grid-template-columns: 1fr 1fr; gap: 5px;}
+
+.terms-check-row { display: flex; align-items: flex-start; gap: 8px; margin: 4px 0 16px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.terms-check-row input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; accent-color: var(--c-primary); cursor: pointer; }
+.terms-check-row label { cursor: pointer; }
+.terms-check-row a { color: var(--c-primary); font-weight: 600; }
+.terms-check-row a:hover { text-decoration: underline; }
+.req-list li { margin-bottom: 2px; display: flex; align-items: center; gap: 6px; transition: 0.2s; }
+.req-list li.invalid { color: #94A3B8; }
+.req-list li.invalid::before { content: '○'; font-size: 10px; }
+.req-list li.valid { color: var(--success); font-weight: 700; }
+.req-list li.valid::before { content: '●'; font-size: 10px; }
+
+.btn-submit { width: 100%; padding: 14px; background: var(--c-primary); color: white; border: none; border-radius: 11px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.2s; margin-top: auto; }
+.btn-submit:hover { background: var(--c-primary-dark); }
+.btn-submit:active { transform: translateY(1px); }
+
+.msg-box { font-size: 13px; margin-top: 15px; text-align: center; font-weight: 700; padding: 10px; border-radius: 10px; display: none; }
+.error-msg { color: #B91C1C; background: #FEF2F2; border: 1px solid #FECACA; }
+.success-msg { color: #047857; background: #ECFDF5; border: 1px solid #A7F3D0; }
+
+.warning-banner { background: #FFFBEB; color: #B45309; padding: 15px; border-radius: 12px; margin-bottom: 25px; font-size: 14px; border: 1px solid #FDE68A; text-align:center;}
+.danger-banner { background: #FEF2F2; color: #B91C1C; padding: 15px; border-radius: 12px; margin-bottom: 25px; font-size: 14px; border: 1px solid #FECACA; text-align:center;}
+.danger-banner a, .warning-banner a { display: inline-block; margin-top: 10px; padding: 8px 15px; background: white; text-decoration: none; font-weight: 700; font-size: 13px; border-radius: 8px; transition: 0.2s; }
+.danger-banner a { color: #B91C1C; border: 1px solid #FECACA; }
+.warning-banner a { color: #B45309; border: 1px solid #FDE68A; }
+
+#securityBanner { width: 100%; max-width: 1200px; margin: 0 auto; }
+
+#loadingOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85); z-index: 20000; color: white; justify-content: center; align-items: center; font-size: 18px; font-weight: 700; backdrop-filter: blur(4px);}
+
+/* ========================================================= */
+/* התאמה למסכים צרים (נייד)                                  */
+/* ========================================================= */
+@media (max-width: 700px) {
+    body { padding: 10px; }
+    .header-panel { flex-direction: column; align-items: stretch; padding: 15px; gap: 15px; }
+    .inputs-section { flex: unset; }
+    .actions-section { margin-right: 0; justify-content: stretch; }
+    .action-grid { width: 100%; }
+    .action-grid button { flex: 1 1 calc(50% - 10px); }
+    .dashboard { justify-content: stretch; gap: 10px; }
+    .kpi-row { gap: 12px 16px; justify-content: flex-start; padding: 12px 16px; }
+    .kpi-item { font-size: 13.5px; }
+    .table-container { max-height: 55vh; }
+}
+
+/* ========================================================= */
+/* חוקי הדפסה                                                */
+/* ========================================================= */
+@media print {
+    @page { size: A4 landscape; margin: 5mm; }
+    body { background: white !important; padding: 0 !important; margin: 0 !important; font-family: Arial, Helvetica, sans-serif !important; color: #000 !important;}
+    #debugBox, .header-panel, .dashboard, .modal, .version-stamp, .full-screen-overlay, #printBtn, #closeMonthBtn, #weeklyWarning, #securityBanner { display: none !important; }
+    #sheetTitle { display: none !important; }
+    .print-only { display: block !important; }
+    .print-only-cell { display: table-cell !important; }
+    .hide-print { display: none !important; }
+
+    /* תצוגה פשוטה היא רק למסך - בהדפסה תמיד מוצגות כל 25 העמודות, בלי קשר למצב המתג */
+    .table-container.simple-view .pct-col,
+    .table-container.simple-view [id^="val-J-"], .table-container.simple-view [id^="val-K-"],
+    .table-container.simple-view [id^="val-L-"], .table-container.simple-view [id^="val-M-"],
+    .table-container.simple-view [id^="val-N-"], .table-container.simple-view [id^="val-O-"],
+    .table-container.simple-view [id^="val-P-"], .table-container.simple-view [id^="val-Q-"],
+    .table-container.simple-view [id^="val-R-"], .table-container.simple-view [id^="val-S-"],
+    .table-container.simple-view [id^="val-T-"], .table-container.simple-view [id^="val-U-"],
+    .table-container.simple-view [id^="val-V-"], .table-container.simple-view [id^="val-W-"] {
+        display: table-cell !important;
+    }
+
+    .table-container { box-shadow: none !important; max-height: none !important; overflow: visible !important; border: none !important; margin: 0 auto !important; padding: 0 !important; width: max-content !important; }
+    #printHeader { text-align: center; margin-bottom: 2px; }
+    #printHeader h1 { font-size: 12pt; margin: 0; padding-bottom: 2px; display: flex; justify-content: center; align-items: center; gap: 15px; }
+    #printEmployeeNameDisplay { font-size: 10pt; font-weight: normal; color: #333; }
+    table { width: 100% !important; margin: 0 !important; border-collapse: collapse !important; table-layout: fixed !important; border: 2px solid #000 !important; }
+    /* table-layout:fixed מחייב כל עמודה להישאר בתוך רוחב העמוד - בלי זה, עמודת ה"תאור" (הארוכה ביותר)
+       יכולה לדחוף את כל הטבלה אל מעבר לדף. היא היחידה שמותר לה לגלוש לשורה שנייה בתוך התא עצמו. */
+    td[id^="val-desc-"] { white-space: normal !important; overflow-wrap: break-word !important; }
+
+    thead { position: static !important; display: table-header-group !important; }
+    tbody { display: table-row-group !important; }
+    tr { page-break-inside: avoid !important; }
+
+    th, td { padding: 0px 1px !important; height: 12px !important; line-height: 1 !important; font-size: 8pt !important; border: none !important; border-left: 1px solid #ccc !important; color: #000 !important; background: transparent !important; text-align: center !important; white-space: nowrap !important; }
+    th { font-weight: bold !important; border-bottom: 1px solid #000 !important; }
+
+    td[id^="val-desc-"] { text-align: right !important; padding-right: 4px !important; }
+
+    .col-sep { border-left: 1.5px solid #000 !important; }
+    .print-thick-right { border-right: 1.5px solid #000 !important; }
+    .thick-border-left { border-left: 2px solid #000 !important; }
+
+    .row-sat td { border-bottom: 2px solid #000 !important; }
+
+    thead th { border-top: 1px solid #000 !important; border-bottom: 1px solid #000 !important; }
+    tfoot td { border-top: 1px solid #000 !important; font-weight: bold !important; }
+    .tfoot-summary.cost-row td { border-top: 1px dashed #666 !important; }
+    tfoot tr:last-child td { border-bottom: 1px solid #000 !important; }
+
+    input[type="text"] { border: none !important; background: transparent !important; font-size: 8pt !important; font-family: monospace !important; width: 7ch !important; text-align: center !important; color: #000 !important; padding: 0 !important; margin: 0 auto !important; display: block !important;}
+    input[type="text"]::placeholder { color: transparent !important; }
+    .empty-print { color: transparent !important; }
+    #printDashboard { display: flex !important; justify-content: space-between; align-items: center; border: 2px solid #000; border-top: none; padding: 2px 4px; font-size: 8pt; background-color: transparent !important; width: 100% !important; box-sizing: border-box;}
+
+    /* עיצוב הדפסה חדש לטבלת "ריכוז יתרות" - עקבי עם הטבלה הראשית (אותה מסגרת שחורה 2px, אותו קו
+       עליון/תחתון), קומפקטי יותר כדי להבטיח שהכל יישאר בעמוד אחד, וכותרת בגוון כחול עדין במקום אפור. */
+    .balances-table-wrapper { display: block !important; box-shadow: none !important; margin: 6px auto 0 !important; padding: 0 !important; width: 72% !important; page-break-inside: avoid !important; page-break-before: avoid !important; border: none !important;}
+    .balances-table-wrapper h3 { font-size: 9pt !important; margin: 0 0 3px !important; text-align: center !important; }
+    .balances-table { border: 2px solid #000 !important; }
+    .balances-table th { background-color: #DCE7F7 !important; color: #000 !important; border: 1px solid #000 !important; font-size: 8.5pt !important; padding: 2px 4px !important; }
+    .balances-table td { border: 1px solid #000 !important; color: #000 !important; font-size: 8.5pt !important; padding: 2px 4px !important; }
+    .balances-table tr:nth-child(even) { background-color: transparent !important; }
+}
